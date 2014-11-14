@@ -146,14 +146,32 @@ struct Binary
 
 };
 
+/*
+returns maximum power ther given base can be without being larger than given test number
+*/
+int MaxPower(const int base, const int numToTest)
+{
+	int power = 0;
+	int r = pow(base, power);
+	while (r <= numToTest)
+	{
+		power++;
+		r = pow(base, power);
+	}
+	return power - 1;
+}
+
+//Binary DecToBin(bool isSigned, const int numToConvert)
+//{
+//
+//}
+
 void main()
 {
-	Binary bin2("11111111");
-	bin2.isSigned = false;
-
-	int r = bin2.GetDecimal();
-
-	cout << bin2.mBinary << " => " << r;
+	int base = 2;
+	int n = 32;
+	int r = MaxPower(base, n);
+	cout << r << endl;
 	//system("pause");
 
 }
