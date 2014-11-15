@@ -33,7 +33,7 @@ struct Binary
 	Binary(const Binary& a_bin)
 	{
 		mBinary = a_bin.mBinary;
-		isSigned = false;
+		isSigned = a_bin.isSigned;
 	}
 
 	Binary operator+(const Binary& rhs)
@@ -86,7 +86,9 @@ struct Binary
 			result.insert(0, 1, digit);
 
 		}
-		return Binary(result);
+		Binary b(result);
+		b.isSigned = this->isSigned;
+		return b;
 	}
 
 	Binary& operator=(const Binary& rhs)
@@ -101,11 +103,11 @@ struct Binary
 		Binary bin;
 		bin = *this;
 		//int end = 0;
-		bool isNegative = (int)bin.mBinary[0] -48;
+		bool isNegative = (int)bin.mBinary[0] - 48;
 		if (bin.isSigned && isNegative)
 		{
 			//convert to actual binary value
-			bin = Binary(bin.Flip());
+			bin = Binary(bin.GetFlip());
 			bin = bin + Binary("1");
 			bin.isSigned = true;
 			//remove sign bit
@@ -129,7 +131,7 @@ struct Binary
 		return result;
 	}
 
-	string Flip()
+	string GetFlip()
 	{
 		string result = "";
 		Binary bin = *this;
@@ -143,11 +145,16 @@ struct Binary
 		return result;
 	}
 
+	friend ostream& operator<<(ostream& out, const Binary& b)
+	{
+		out << "Binary [mBinary = \"" << b.mBinary << "\" isSigned = " << b.isSigned << "]";
+		return out;
+	}
 
 };
 
 /*
-returns maximum power ther given base can be without being larger than given test number
+returns maximum power the given base can be without being larger than given test number
 */
 int MaxPower(const int base, const int numToTest)
 {
@@ -161,17 +168,72 @@ int MaxPower(const int base, const int numToTest)
 	return power - 1;
 }
 
-//Binary DecToBin(bool isSigned, const int numToConvert)
-//{
-//
-//}
+/*
+return maximum multiple of given base to the given power that is less than or equal to given number to test
+*/
+int MaxMultiple(const int base, const int power, const int numToTest)
+{
+	int r = 0;
+	while (r * pow(base, power) <= numToTest)
+	{
+		r++;
+	}
+	return r - 1;
+}
+
+/*
+returns Binary object that has binary representation of given number to convert in signed or unsigned format
+as given by param. NOTE: number to convert must be positive if isSigned param is false, else returns a Binary = 0
+*/
+Binary DecToBin(bool isSigned, const int numToConvert)
+{
+
+	Binary result;
+	result.isSigned = isSigned;
+
+	bool isNegative = numToConvert < 0;
+	if (isNegative && !isSigned)
+		return result;
+
+	int n = numToConvert;
+	//make positive for convert if needed
+	if (isNegative)
+		n *= -1;
+
+	string binS = "";
+	while (n > 0)
+	{
+		int i = n % 2;
+		n = n / 2;
+		binS.insert(0, 1, (char)(i + 48));
+	}
+	result.mBinary = binS;
+	if (isSigned)
+	{
+		result.mBinary = result.GetFlip();
+		result = result + Binary("1");
+		
+		//add sign bit
+		if (isNegative)
+		{
+			result.mBinary.insert(0, 1, '1');
+		}
+		else
+		{
+			result.mBinary.insert(0, 1, '0');
+		}
+	}
+	return result;
+
+}
 
 void main()
 {
-	int base = 2;
-	int n = 32;
-	int r = MaxPower(base, n);
-	cout << r << endl;
+	int n = -5;
+	bool isSigned = true;
+	Binary b = DecToBin(isSigned, n);
+	cout << b << endl;
+	cout << b.GetDecimal() << endl;
 	//system("pause");
 
 }
