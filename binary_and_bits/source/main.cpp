@@ -18,6 +18,16 @@ struct Binary
 		isSigned = false;
 	}
 
+	Binary(int decimal)
+	{
+		*this = DecToBin(false, decimal);
+	}
+
+	Binary(bool isSigned, int decimal)
+	{
+		*this = DecToBin(isSigned, decimal);
+	}
+
 	Binary(const char* a_bin)
 	{
 		mBinary = string(a_bin);
@@ -151,6 +161,51 @@ struct Binary
 		return out;
 	}
 
+	/*
+	returns Binary object that has binary representation of given number to convert in signed or unsigned format
+	as given by param. NOTE: number to convert must be positive if isSigned param is false, else returns a Binary = 0
+	*/
+	Binary DecToBin(bool isSigned, const int numToConvert)
+	{
+
+		Binary result;
+		result.isSigned = isSigned;
+
+		bool isNegative = numToConvert < 0;
+		if (isNegative && !isSigned)
+			return result;
+
+		int n = numToConvert;
+		//make positive for convert if needed
+		if (isNegative)
+			n *= -1;
+
+		string binS = "";
+		while (n > 0)
+		{
+			int i = n % 2;
+			n = n / 2;
+			binS.insert(0, 1, (char)(i + 48));
+		}
+		result.mBinary = binS;
+		if (isSigned)
+		{
+			result.mBinary = result.GetFlip();
+			result = result + Binary("1");
+
+			//add sign bit
+			if (isNegative)
+			{
+				result.mBinary.insert(0, 1, '1');
+			}
+			else
+			{
+				result.mBinary.insert(0, 1, '0');
+			}
+		}
+		return result;
+
+	}
 };
 
 /*
@@ -181,59 +236,30 @@ int MaxMultiple(const int base, const int power, const int numToTest)
 	return r - 1;
 }
 
-/*
-returns Binary object that has binary representation of given number to convert in signed or unsigned format
-as given by param. NOTE: number to convert must be positive if isSigned param is false, else returns a Binary = 0
-*/
-Binary DecToBin(bool isSigned, const int numToConvert)
-{
 
-	Binary result;
-	result.isSigned = isSigned;
-
-	bool isNegative = numToConvert < 0;
-	if (isNegative && !isSigned)
-		return result;
-
-	int n = numToConvert;
-	//make positive for convert if needed
-	if (isNegative)
-		n *= -1;
-
-	string binS = "";
-	while (n > 0)
-	{
-		int i = n % 2;
-		n = n / 2;
-		binS.insert(0, 1, (char)(i + 48));
-	}
-	result.mBinary = binS;
-	if (isSigned)
-	{
-		result.mBinary = result.GetFlip();
-		result = result + Binary("1");
-		
-		//add sign bit
-		if (isNegative)
-		{
-			result.mBinary.insert(0, 1, '1');
-		}
-		else
-		{
-			result.mBinary.insert(0, 1, '0');
-		}
-	}
-	return result;
-
-}
 
 void main()
 {
-	int n = -5;
-	bool isSigned = true;
-	Binary b = DecToBin(isSigned, n);
-	cout << b << endl;
-	cout << b.GetDecimal() << endl;
+	int one = 0x01;
+	int two = 0x02;
+	int four = 0x04;
+	int eight = 0x08;
+	int sixteen = 0x10;
+	int thirty_two = 0x20;
+	int sixty_four = 0x30;
+
+	int n = 0x00;
+
+	n = n | two | eight;
+
+	cout << n << endl;
+
+	bool twoSet = n & two;
+	bool fourSet = n & four;
+
+	cout << "is two set? " << twoSet << endl;
+	cout << "is three set? " << fourSet << endl;
+
 	//system("pause");
 
 }
