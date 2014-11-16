@@ -240,26 +240,30 @@ int MaxMultiple(const int base, const int power, const int numToTest)
 
 void main()
 {
-	int one = 0x01;
-	int two = 0x02;
-	int four = 0x04;
-	int eight = 0x08;
-	int sixteen = 0x10;
-	int thirty_two = 0x20;
-	int sixty_four = 0x30;
+	//int one = 0x01;
+	//int two = 0x02;
+	//int four = 0x04;
+	//int eight = 0x08;
+	//int sixteen = 0x10;
+	//int thirty_two = 0x20;
+	//int sixty_four = 0x30;
 
-	int n = 0x00;
+	//int n = 0x00;
 
-	n = n | two | eight;
+	//n = n | two | eight;
 
-	cout << n << endl;
+	//cout << n << endl;
 
-	bool twoSet = n & two;
-	bool fourSet = n & four;
+	//bool twoSet = n & two;
+	//bool fourSet = n & four;
 
-	cout << "is two set? " << twoSet << endl;
-	cout << "is three set? " << fourSet << endl;
+	//cout << "is two set? " << twoSet << endl;
+	//cout << "is three set? " << fourSet << endl;
 
+	unsigned int n = 0;
+	unsigned int r = n & 1;
+	cout << "n: " << n << endl;
+	cout << "r: " << r << endl;
 	//system("pause");
 
 }
