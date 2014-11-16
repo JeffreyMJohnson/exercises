@@ -16,8 +16,6 @@ Remove Specific Name
 
 using namespace std;
 
-list<string> myList;
-
 void UserOptionsDisplay();
 int GetUserInput();
 bool Update();
@@ -25,6 +23,7 @@ bool Update();
 class NameDB
 {
 public:
+
 	bool AddName(const string& a_name)
 	{
 		if (dBase.size() == 0)
@@ -36,56 +35,61 @@ public:
 		list<string>::iterator insertPos = find(dBase.begin(), dBase.end(), a_name);
 		if (insertPos != dBase.end())//name already there
 			return false;
-
-		insertPos = GetSortPosition(a_name);
-		dBase.insert(insertPos, a_name);
+		dBase.push_back(a_name);
+		dBase.sort();
 		return true;
+	}
 
+	friend ostream& operator<<(ostream& out, NameDB& d)
+	{
+		cout << "NameDB [";
+		for (list<string>::iterator it = d.dBase.begin(); it != d.dBase.end(); it++)
+		{
+			cout << *it << ", ";
+		}
+		cout << "]";
+		return cout;
+	}
+
+	void DisplayNames()
+	{
+		cout << "All names in database\n\n";
+		for (list<string>::iterator it = dBase.begin(); it != dBase.end(); it++)
+		{
+			cout << *it << endl;
+		}
+		cout << "\n\n";
+	}
+
+	string RemoveName(const int position)
+	{
+		if (position > dBase.size() - 1)
+			return string("");
+		list<string>::iterator it = dBase.begin();
+		for (int i = 0; i <= position; i++)
+		{
+			it++;
+		}
+		string s = *it;
+		dBase.erase(it);
+		return s;
 	}
 private:
 	list<string> dBase;
-
-	/*
-	returns iterator of position where given a_name param would be inserted to keep list sorted 
-	NOTE:assumes given name is not in list and list has more than zero entries already
-	*/
-	list<string>::iterator GetSortPosition(const string& a_name)
-	{
-		for (list<string>::iterator it = dBase.begin(); it != dBase.end(); it++)
-		{
-			int compare = a_name.compare(*it);
-
-			if (compare > 0)//a_name larger than data base name
-			{
-				if (it == dBase.begin())
-					//first element so this is the spot
-					return it;
-				else
-				{
-					//at least second element so return previous
-					return --it;
-				}
-			}
-		}
-		//end of list so a_name must be last
-		return dBase.end();
-	}
 };
+
+NameDB myDB;
 
 void main()
 {
-	NameDB myDB;
-	cout << myDB.AddName("foo") << endl;
-	cout << myDB.AddName("bar") << endl;
-	cout << myDB.AddName("foo") << endl;
 	
-
-	//cout << "Name Database\n\n";
-	//bool quit = false;
-	//while (!quit)
-	//{
-	//	quit = Update();
-	//}
+	cout << "Name Database\n\n";
+	bool quit = false;
+	while (!quit)
+	{
+		quit = Update();
+	}
+	cout << myDB << endl;
 }
 
 void UserOptionsDisplay()
@@ -123,17 +127,32 @@ bool Update()
 {
 	UserOptionsDisplay();
 	int choice = GetUserInput();
-
+	string name = "";
 	switch (choice)
 	{
 	case 1:
 		//add name
+		cout << "enter name to add: ";
+		cin.ignore();
+		getline(cin, name);
+		if (myDB.AddName(name))
+		{
+			cout << "name added to database\n";
+		}
+		else
+		{
+			cout << "error, name not added to database.\n";
+		}
 		break;
 	case 2:
 		//display list
+		myDB.DisplayNames();
+
 		break;
 	case 3:
 		//remove name at
+		cout << "what position (zero based) do you want removed?\n";
+		cin.ignore();
 		break;
 	case 4:
 		//remove specific name
