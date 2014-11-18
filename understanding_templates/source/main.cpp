@@ -1,4 +1,6 @@
 #include <iostream>
+#include <map>
+#include <vector>
 
 using namespace std;
 
@@ -96,6 +98,9 @@ T& ABS(T& x)
 
 void main()
 {
+
+
+
 	int i1 = 10;
 	int i2 = 5;
 	float f1 = 1.5;
