@@ -13,6 +13,7 @@ Remove Specific Name
 #include <string>
 #include <list>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -80,16 +81,35 @@ private:
 
 NameDB myDB;
 
+void Foo(){
+	cout << "foo" << endl;
+}
+
+void Bar()
+{
+	cout << "bar" << endl;
+}
+
+typedef void (*Func)(void);
+
+
 void main()
 {
-	
-	cout << "Name Database\n\n";
-	bool quit = false;
-	while (!quit)
-	{
-		quit = Update();
-	}
-	cout << myDB << endl;
+	map<string, Func> myMap;
+	myMap["foo"] = &Foo;
+	myMap["bar"] = &Bar;
+
+	myMap["foo"]();
+	myMap["bar"]();
+
+	//
+	//cout << "Name Database\n\n";
+	//bool quit = false;
+	//while (!quit)
+	//{
+	//	quit = Update();
+	//}
+	//cout << myDB << endl;
 }
 
 void UserOptionsDisplay()
