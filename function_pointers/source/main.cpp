@@ -19,8 +19,8 @@ enum STATE
 
 STATE currentState = MENU;
 vector<void*> funcPointers;
-void(*functionPtr)() = nullptr;
-map<STATE, void*> myMap;
+typedef void(*functionPtr)();
+map<STATE, functionPtr> myMap;
 bool quit = false;
 
 void Menu();
@@ -31,7 +31,6 @@ void LoadPtrs();
 
 void main()
 {
-	
 	LoadPtrs();
 
 	while (!quit)
@@ -39,21 +38,33 @@ void main()
 		switch (currentState)
 		{
 		case MENU:
-
+			myMap[MENU]();
+			currentState = GAME;
 			break;
 		case GAME:
-
+			myMap[GAME]();
+			currentState = QUIT;
 			break;
 		case QUIT:
-			map<STATE, void*>::iterator it = myMap.find(QUIT);
-			(it->second);
+			myMap[QUIT]();
 		}
 	}
+	system("pause");
 }
 
 void Quit()
 {
 	quit = true;
+}
+
+void Menu()
+{
+	cout << "im a menu" << endl;
+}
+
+void Game()
+{
+	cout << "im a game" << endl;
 }
 
 void LoadPtrs()
