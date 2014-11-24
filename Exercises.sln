@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "strings_highscores", "Exercises\Exercises.vcxproj", "{8B54F3F5-7B9A-474C-A548-B2F1FE799C06}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "understanding_templates", "understanding_templates\understanding_templates.vcxproj", "{AC99C43E-3B26-4473-99FB-BCCE01B7345F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "function_pointers", "function_pointers\function_pointers.vcxproj", "{36EC44CE-78A4-461F-89EF-C9AD518E996F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stacks", "stacks\stacks.vcxproj", "{F44570AB-BB2F-4867-9413-8A49EA87D985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{36EC44CE-78A4-461F-89EF-C9AD518E996F}.Debug|Win32.Build.0 = Debug|Win32
 		{36EC44CE-78A4-461F-89EF-C9AD518E996F}.Release|Win32.ActiveCfg = Release|Win32
 		{36EC44CE-78A4-461F-89EF-C9AD518E996F}.Release|Win32.Build.0 = Release|Win32
+		{F44570AB-BB2F-4867-9413-8A49EA87D985}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F44570AB-BB2F-4867-9413-8A49EA87D985}.Debug|Win32.Build.0 = Debug|Win32
+		{F44570AB-BB2F-4867-9413-8A49EA87D985}.Release|Win32.ActiveCfg = Release|Win32
+		{F44570AB-BB2F-4867-9413-8A49EA87D985}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

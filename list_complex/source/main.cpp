@@ -81,35 +81,35 @@ private:
 
 NameDB myDB;
 
-void Foo(){
-	cout << "foo" << endl;
-}
-
-void Bar()
-{
-	cout << "bar" << endl;
-}
-
-typedef void (*Func)(void);
+//void Foo(){
+//	cout << "foo" << endl;
+//}
+//
+//void Bar()
+//{
+//	cout << "bar" << endl;
+//}
+//
+//typedef void (*Func)(void);
 
 
 void main()
 {
-	map<string, Func> myMap;
-	myMap["foo"] = &Foo;
-	myMap["bar"] = &Bar;
+	//map<string, Func> myMap;
+	//myMap["foo"] = &Foo;
+	//myMap["bar"] = &Bar;
 
-	myMap["foo"]();
-	myMap["bar"]();
+	//myMap["foo"]();
+	//myMap["bar"]();
 
-	//
-	//cout << "Name Database\n\n";
-	//bool quit = false;
-	//while (!quit)
-	//{
-	//	quit = Update();
-	//}
-	//cout << myDB << endl;
+	
+	cout << "Name Database\n\n";
+	bool quit = false;
+	while (!quit)
+	{
+		quit = Update();
+	}
+	cout << myDB << endl;
 }
 
 void UserOptionsDisplay()
