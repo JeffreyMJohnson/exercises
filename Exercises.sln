@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "queues", "queues\queues.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maps", "maps\maps.vcxproj", "{9B277BDF-8B26-4A1D-851A-80C6F03ADD84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RandomStringSort", "RandomStringSort\RandomStringSort.vcxproj", "{833B647D-1C79-49C2-911E-FF919177B0BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -69,6 +71,10 @@ Global
 		{9B277BDF-8B26-4A1D-851A-80C6F03ADD84}.Debug|Win32.Build.0 = Debug|Win32
 		{9B277BDF-8B26-4A1D-851A-80C6F03ADD84}.Release|Win32.ActiveCfg = Release|Win32
 		{9B277BDF-8B26-4A1D-851A-80C6F03ADD84}.Release|Win32.Build.0 = Release|Win32
+		{833B647D-1C79-49C2-911E-FF919177B0BE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{833B647D-1C79-49C2-911E-FF919177B0BE}.Debug|Win32.Build.0 = Debug|Win32
+		{833B647D-1C79-49C2-911E-FF919177B0BE}.Release|Win32.ActiveCfg = Release|Win32
+		{833B647D-1C79-49C2-911E-FF919177B0BE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
