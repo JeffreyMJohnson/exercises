@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "maps", "maps\maps.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RandomStringSort", "RandomStringSort\RandomStringSort.vcxproj", "{833B647D-1C79-49C2-911E-FF919177B0BE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sigleton", "sigleton\sigleton.vcxproj", "{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -75,6 +77,10 @@ Global
 		{833B647D-1C79-49C2-911E-FF919177B0BE}.Debug|Win32.Build.0 = Debug|Win32
 		{833B647D-1C79-49C2-911E-FF919177B0BE}.Release|Win32.ActiveCfg = Release|Win32
 		{833B647D-1C79-49C2-911E-FF919177B0BE}.Release|Win32.Build.0 = Release|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Debug|Win32.Build.0 = Debug|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Release|Win32.ActiveCfg = Release|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
