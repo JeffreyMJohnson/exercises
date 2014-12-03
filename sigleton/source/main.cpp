@@ -1,5 +1,5 @@
 #include "Singleton.h"
-#include <ostream>
+#include <iostream>
 
 using namespace std;
 
@@ -9,5 +9,6 @@ int h = s->screenHeight;
 
 void main()
 {
-	
+	cout << "width: " << w;
+	system("pause");
 }
