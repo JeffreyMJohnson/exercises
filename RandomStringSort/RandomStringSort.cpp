@@ -36,7 +36,8 @@ void main(){
 	float start = time(nullptr);
 	while (!(randS == "eeiprttwy"))
 	{
-		s = RandomSort(s);
+		//cout << randS << endl;
+		randS = RandomSort(s);
 	}
 	float end = time(nullptr);
 	cout << "it took " << end - start << " seconds\n";

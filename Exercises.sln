@@ -26,6 +26,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RandomStringSort", "RandomStringSort\RandomStringSort.vcxproj", "{833B647D-1C79-49C2-911E-FF919177B0BE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "container_algorithms", "container_algorithms\container_algorithms.vcxproj", "{ECB9E43C-AF44-408C-98E1-066456F3031F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sigleton", "sigleton\sigleton.vcxproj", "{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "factory", "factory\factory.vcxproj", "{6F7C24D3-CBC2-4DD9-A922-D6B10FDF2BFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +84,14 @@ Global
 		{ECB9E43C-AF44-408C-98E1-066456F3031F}.Debug|Win32.Build.0 = Debug|Win32
 		{ECB9E43C-AF44-408C-98E1-066456F3031F}.Release|Win32.ActiveCfg = Release|Win32
 		{ECB9E43C-AF44-408C-98E1-066456F3031F}.Release|Win32.Build.0 = Release|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Debug|Win32.Build.0 = Debug|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Release|Win32.ActiveCfg = Release|Win32
+		{C8E6D3FD-E5E3-49B5-8E7F-526892A23F7C}.Release|Win32.Build.0 = Release|Win32
+		{6F7C24D3-CBC2-4DD9-A922-D6B10FDF2BFE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6F7C24D3-CBC2-4DD9-A922-D6B10FDF2BFE}.Debug|Win32.Build.0 = Debug|Win32
+		{6F7C24D3-CBC2-4DD9-A922-D6B10FDF2BFE}.Release|Win32.ActiveCfg = Release|Win32
+		{6F7C24D3-CBC2-4DD9-A922-D6B10FDF2BFE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

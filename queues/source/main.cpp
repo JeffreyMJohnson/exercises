@@ -18,7 +18,7 @@ namespace j
 	class Queue
 	{
 	public:
-		Queue(){}
+		Queue(){ mSize = 0; }
 		Queue(Queue& rhs)
 		{
 			for (std::list<T>::iterator it = mData.begin(); it != mData.end(); it++)
