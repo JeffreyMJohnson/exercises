@@ -3,6 +3,7 @@
 #include "GameDefs.h"
 #include "Game.h"
 #include "Cat.h"
+#include "Bilbo.h"
 #include <string>
 #include <cmath>
 #include <time.h>
@@ -20,6 +21,12 @@ int main( int argc, char* argv[] )
 	cats[2].initWithFile("./images/cat3.png");
 	cats[3].initWithFile("./images/cat4.png");
 
+	Bilbo bilbos[4];
+	bilbos[0].initWithFile("./images/bilbo.png");
+	bilbos[1].initWithFile("./images/bilbo.png");
+	bilbos[2].initWithFile("./images/bilbo.png");
+	bilbos[3].initWithFile("./images/bilbo.png");
+
 	int background = CreateSprite("./images/background.png", iScreenWidth, iScreenHeight, false);
 	MoveSprite(background, 0, 0);
 
@@ -27,6 +34,7 @@ int main( int argc, char* argv[] )
 
 	for(int i=0; i<4; i++) {
 		game.attachObserver(&cats[i]);
+		game.attachObserver(&bilbos[i]);
 	}
 
 	float delta = 0;
@@ -42,6 +50,7 @@ int main( int argc, char* argv[] )
 
 		for(int i=0; i<4; i++) {
 			cats[i].draw();
+			bilbos[i].draw();
 		}
 
 	} while ( FrameworkUpdate() == false );
@@ -50,6 +59,9 @@ int main( int argc, char* argv[] )
 	for(int i=0; i<4; i++) {
 		game.detachObserver(&cats[i]);
 		cats[i].destroy();
+		game.detachObserver(&bilbos[i]);
+		bilbos[i].destroy();
+
 	}
 
 	Shutdown();

@@ -91,11 +91,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Bilbo.cpp" />
     <ClCompile Include="source\Cat.cpp" />
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Bilbo.h" />
     <ClInclude Include="include\Cat.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameDefs.h" />
