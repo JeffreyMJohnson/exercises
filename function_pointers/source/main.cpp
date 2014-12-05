@@ -54,6 +54,7 @@ void main()
 
 void Quit()
 {
+	cout << "I'm quitting\n";
 	quit = true;
 }
 
