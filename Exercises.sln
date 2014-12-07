@@ -37,6 +37,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "publisher_subscriber", "Pub
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memory_logging", "memory_logging\memory_logging.vcxproj", "{99ECE184-DDC1-468E-8B7C-ACC59194C00B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interpolation_and_splines", "interpolation_and_splines\interpolation_and_splines.vcxproj", "{BA9BAB48-FEC8-44A1-B811-51AAA3C9E863}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -111,6 +113,10 @@ Global
 		{99ECE184-DDC1-468E-8B7C-ACC59194C00B}.Debug|Win32.Build.0 = Debug|Win32
 		{99ECE184-DDC1-468E-8B7C-ACC59194C00B}.Release|Win32.ActiveCfg = Release|Win32
 		{99ECE184-DDC1-468E-8B7C-ACC59194C00B}.Release|Win32.Build.0 = Release|Win32
+		{BA9BAB48-FEC8-44A1-B811-51AAA3C9E863}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BA9BAB48-FEC8-44A1-B811-51AAA3C9E863}.Debug|Win32.Build.0 = Debug|Win32
+		{BA9BAB48-FEC8-44A1-B811-51AAA3C9E863}.Release|Win32.ActiveCfg = Release|Win32
+		{BA9BAB48-FEC8-44A1-B811-51AAA3C9E863}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
