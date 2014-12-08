@@ -50,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>AIE_1st_Year_Framework_d.lib;JMath_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AIE_1st_Year_Framework_d.lib;..\..\..\JMath\JMath_Library\Debug\JMath_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,11 +68,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\JMath\JMath_library\JMath_static\include\TheMath.h" />
     <ClInclude Include="include\AIE.h" />
-    <ClInclude Include="include\TheMath.h" />
+    <ClInclude Include="include\BaseState.h" />
+    <ClInclude Include="include\LERPState.h" />
+    <ClInclude Include="include\MenuState.h" />
+    <ClInclude Include="include\QuadBezier.h" />
+    <ClInclude Include="include\StateManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\LERPState.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\MenuState.cpp" />
+    <ClCompile Include="source\QuadBezier.cpp" />
+    <ClCompile Include="source\StateManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
