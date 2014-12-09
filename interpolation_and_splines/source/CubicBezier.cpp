@@ -90,6 +90,8 @@ void CubicBezier::Draw()
 		MoveSprite(object->ID, object->position.x, object->position.y);
 		DrawSprite(object->ID);
 	}
+	Vector2 playerPos = GetSprite("player")->position;
+	//MoveCamera(playerPos.x, playerPos.y);
 
 	DrawString("<M> to return to MENU", screenWidth * 0.5f - 200, 50);
 }
