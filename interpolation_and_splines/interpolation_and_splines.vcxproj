@@ -42,6 +42,10 @@
     <IncludePath>$(ProjectDir)include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)libs\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(ProjectDir)include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)libs\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -71,12 +75,16 @@
     <ClInclude Include="..\..\JMath\JMath_library\JMath_static\include\TheMath.h" />
     <ClInclude Include="include\AIE.h" />
     <ClInclude Include="include\BaseState.h" />
+    <ClInclude Include="include\CubicBezier.h" />
+    <ClInclude Include="include\HermiteSpline.h" />
     <ClInclude Include="include\LERPState.h" />
     <ClInclude Include="include\MenuState.h" />
     <ClInclude Include="include\QuadBezier.h" />
     <ClInclude Include="include\StateManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\CubicBezier.cpp" />
+    <ClCompile Include="source\HermiteSpline.cpp" />
     <ClCompile Include="source\LERPState.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\MenuState.cpp" />

@@ -45,6 +45,8 @@
     <OutDir>bin\</OutDir>
     <IntDir>obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
+    <LibraryPath>$(ProjectDir)libs\</LibraryPath>
+    <IncludePath>$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

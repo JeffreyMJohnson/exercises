@@ -4,6 +4,8 @@
 #include "BaseState.h"
 #include "LERPState.h"
 #include "QuadBezier.h"
+#include "CubicBezier.h"
+#include "HermiteSpline.h"
 #include <iostream>
 
 class MenuState

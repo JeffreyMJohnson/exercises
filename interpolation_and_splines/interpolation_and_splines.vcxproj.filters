@@ -36,6 +36,12 @@
     <ClInclude Include="include\QuadBezier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\CubicBezier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HermiteSpline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -51,6 +57,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\QuadBezier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CubicBezier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\HermiteSpline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
