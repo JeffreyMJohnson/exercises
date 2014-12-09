@@ -3,6 +3,7 @@
 
 #include "BaseState.h"
 #include <vector>
+#include <iostream>
 
 class LERPState
 	: public BaseState

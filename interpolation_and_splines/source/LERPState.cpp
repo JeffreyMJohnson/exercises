@@ -13,16 +13,10 @@ void LERPState::Init()
 	Sprite* markerStart = new Sprite;
 	Sprite* markerEnd = new Sprite;
 	Player* player = new Player;
-	//Sprite* p01 = new Sprite;
-	//Sprite* p02 = new Sprite;
 
 	//points to adjust the bezier curve
 	//p0
 	curvePoints.push_back(new Vector2(50, 100));
-	////p1
-	//curvePoints.push_back(new Vector2(200, 500));
-	////p2
-	//curvePoints.push_back(new Vector2(500, 200));
 	//p3
 	curvePoints.push_back(new Vector2(1000, 100));
 
@@ -31,18 +25,6 @@ void LERPState::Init()
 	markerStart->position = *curvePoints[0];
 	markerStart->ID = CreateSprite(spriteFileName, markerStart->size.x, markerStart->size.y, true);
 	objectList.push_back(markerStart);
-
-	//p01->name = "p01";
-	//p01->size = markerStart->size;
-	//p01->position = *curvePoints[1];
-	//p01->ID = markerStart->ID;
-	//objectList.push_back(p01);
-
-	//p02->name = "p02";
-	//p02->size = markerStart->size;
-	//p02->position = *curvePoints[2];
-	//p02->ID = markerStart->ID;
-	//objectList.push_back(p02);
 
 	markerEnd->name = "end";
 	markerEnd->size = markerStart->size;
@@ -66,8 +48,6 @@ void LERPState::Draw()
 
 	Vector2 p0 = *curvePoints[0];
 	Vector2 p1 = *curvePoints[1];
-	//Vector2 p2 = *curvePoints[2];
-	//Vector2 p3 = *curvePoints[3];
 
 	DrawLine(p0.x, p0.y, p1.x, p1.y, color);
 
@@ -126,4 +106,13 @@ void LERPState::HandleUI(StateManager* stateMan)
 {
 	if (IsKeyDown('M'))
 		stateMan->PopState();
+
+	if (GetMouseButtonDown(MOUSE_BUTTON_1))
+	{
+		std::cout << "click\n";
+	}
+	if (GetMouseButtonReleased(MOUSE_BUTTON_1))
+	{
+		std::cout << "released\n";
+	}
 }
