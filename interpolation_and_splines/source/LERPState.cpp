@@ -46,8 +46,8 @@ void LERPState::Draw()
 
 	SColour color = SColour(0, 255, 0, 255);
 
-	Vector2 p0 = *curvePoints[0];
-	Vector2 p1 = *curvePoints[1];
+	Vector2 p0 = objectList[0]->position;
+	Vector2 p1 = objectList[1]->position;
 
 	DrawLine(p0.x, p0.y, p1.x, p1.y, color);
 
@@ -111,10 +111,8 @@ void LERPState::HandleUI(StateManager* stateMan)
 	}
 
 
-	if (GetMouseButtonDown(MOUSE_BUTTON_1) && !clicked)
+	if (GetMouseButtonDown(MOUSE_BUTTON_1))
 	{
-		clicked = true;
-		std::cout << "clicked\n";
 		//loop through objects and see if clicked
 		for (Sprite* object : objectList)
 		{
@@ -123,14 +121,16 @@ void LERPState::HandleUI(StateManager* stateMan)
 				double mousePosX = 0.0;
 				double mousePosY = 0.0;
 				GetMouseLocation(mousePosX, mousePosY);
+				mousePosY = screenHeight - mousePosY;
+				//std::cout << "x: " << mousePosX << " y: " << mousePosY << std::endl;
 				bool isCollided = object->IsCollided(Vector2(mousePosX, mousePosY));
-				std::cout << "object: " << object->name << " clicked: " << isCollided << std::endl;
+				//std::cout << "object: " << object->name << " clicked: " << isCollided << std::endl;
+
+				if (object->IsCollided(Vector2(mousePosX, mousePosY)))
+				{
+					object->position = Vector2(mousePosX, mousePosY);
+				}
 			}
 		}
-	}
-	if (GetMouseButtonReleased(MOUSE_BUTTON_1) && clicked)
-	{
-		std::cout << "released\n";
-		clicked = false;
 	}
 }

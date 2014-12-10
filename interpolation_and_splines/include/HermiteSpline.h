@@ -18,15 +18,7 @@ public:
 	void Destroy();
 
 private:
-	std::vector<Sprite*> objectList;
-	std::vector<Vector2*> curvePoints;
-	float currentLERPPercent = 0.0f;
 	void HandleUI(StateManager* stateMan);
-	
-	/*
-	return a reference to Srite struct with name equal to given param if one exists, else returns nullptr.
-	*/
-	Sprite* GetSprite(const char* objectName);
 };
 
 

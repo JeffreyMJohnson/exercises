@@ -64,10 +64,10 @@ void HermiteSpline::Draw()
 
 	SColour color = SColour(0, 255, 0, 255);
 
-	Vector2 p0 = *curvePoints[0];
-	Vector2 p1 = *curvePoints[3];
-	Vector2 t0 = *curvePoints[1];
-	Vector2 t1 = *curvePoints[2];
+	Vector2 p0 = GetSprite("start")->position;
+	Vector2 p1 = GetSprite("end")->position;
+	Vector2 t0 = GetSprite("p01")->position;
+	Vector2 t1 = GetSprite("p02")->position;
 
 	//draw curve
 	for (int i = 0; i < 100; i++)
@@ -135,19 +135,36 @@ void HermiteSpline::Destroy()
 	}
 }
 
-Sprite* HermiteSpline::GetSprite(const char* objectName)
-{
-	Sprite* r = nullptr;
-	for (Sprite* object : objectList)
-	{
-		if (object->name == objectName)
-			return r = object;
-	}
-	return r;
-}
 
 void HermiteSpline::HandleUI(StateManager* stateMan)
 {
 	if (IsKeyDown('M'))
+	{
 		stateMan->PopState();
+		return;
+	}
+
+
+	if (GetMouseButtonDown(MOUSE_BUTTON_1))
+	{
+		//loop through objects and see if clicked
+		for (Sprite* object : objectList)
+		{
+			if (object->ID == objectList[0]->ID)
+			{
+				double mousePosX = 0.0;
+				double mousePosY = 0.0;
+				GetMouseLocation(mousePosX, mousePosY);
+				mousePosY = screenHeight - mousePosY;
+				//std::cout << "x: " << mousePosX << " y: " << mousePosY << std::endl;
+				bool isCollided = object->IsCollided(Vector2(mousePosX, mousePosY));
+				//std::cout << "object: " << object->name << " clicked: " << isCollided << std::endl;
+
+				if (object->IsCollided(Vector2(mousePosX, mousePosY)))
+				{
+					object->position = Vector2(mousePosX, mousePosY);
+				}
+			}
+		}
+	}
 }

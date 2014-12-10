@@ -66,10 +66,10 @@ void CubicBezier::Draw()
 
 	SColour color = SColour(0, 255, 0, 255);
 
-	Vector2 p0 = *curvePoints[0];
-	Vector2 p1 = *curvePoints[1];
-	Vector2 p2 = *curvePoints[2];
-	Vector2 p3 = *curvePoints[3];
+	Vector2 p0 = GetSprite("start")->position;
+	Vector2 p1 = GetSprite("p01")->position;
+	Vector2 p2 = GetSprite("p02")->position;
+	Vector2 p3 = GetSprite("end")->position;
 
 	//draw curve
 	for (int i = 0; i < 100; i++)
@@ -90,7 +90,7 @@ void CubicBezier::Draw()
 		MoveSprite(object->ID, object->position.x, object->position.y);
 		DrawSprite(object->ID);
 	}
-	Vector2 playerPos = GetSprite("player")->position;
+	//Vector2 playerPos = GetSprite("player")->position;
 	//MoveCamera(playerPos.x, playerPos.y);
 
 	DrawString("<M> to return to MENU", screenWidth * 0.5f - 200, 50);
@@ -135,19 +135,35 @@ void CubicBezier::Destroy()
 	}
 }
 
-Sprite* CubicBezier::GetSprite(const char* objectName)
-{
-	Sprite* r = nullptr;
-	for (Sprite* object : objectList)
-	{
-		if (object->name == objectName)
-			return r = object;
-	}
-	return r;
-}
-
 void CubicBezier::HandleUI(StateManager* stateMan)
 {
 	if (IsKeyDown('M'))
+	{
 		stateMan->PopState();
+		return;
+	}
+
+
+	if (GetMouseButtonDown(MOUSE_BUTTON_1))
+	{
+		//loop through objects and see if clicked
+		for (Sprite* object : objectList)
+		{
+			if (object->ID == objectList[0]->ID)
+			{
+				double mousePosX = 0.0;
+				double mousePosY = 0.0;
+				GetMouseLocation(mousePosX, mousePosY);
+				mousePosY = screenHeight - mousePosY;
+				//std::cout << "x: " << mousePosX << " y: " << mousePosY << std::endl;
+				//bool isCollided = object->IsCollided(Vector2(mousePosX, mousePosY));
+				//std::cout << "object: " << object->name << " clicked: " << isCollided << std::endl;
+
+				if (object->IsCollided(Vector2(mousePosX, mousePosY)))
+				{
+					object->position = Vector2(mousePosX, mousePosY);
+				}
+			}
+		}
+	}
 }

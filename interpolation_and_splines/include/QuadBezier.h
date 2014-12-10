@@ -17,9 +17,6 @@ public:
 	void Destroy();
 
 private:
-	std::vector<Sprite*> objectList;
-	std::vector<Vector2*> curvePoints;
-	float currentLERPPercent = 0.0f;
 
 	void HandleUI(StateManager* stateMan);
 };

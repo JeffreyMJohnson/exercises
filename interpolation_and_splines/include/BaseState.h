@@ -4,6 +4,7 @@
 #include "AIE.h"
 #include "..\..\..\JMath\JMath_Library\JMath_static\include\TheMath.h"
 #include "StateManager.h"
+#include <vector>
 
 typedef unsigned int uInt;
 
@@ -42,9 +43,28 @@ public:
 	virtual void Destroy() = 0;
 
 	const char* spriteFileName = "./images/crate_sideup.png";
+
 protected:
 	int screenWidth;
 	int screenHeight;
+
+	std::vector<Sprite*> objectList;
+	std::vector<Vector2*> curvePoints;
+	float currentLERPPercent = 0.0f;
+
+
+
+	Sprite* GetSprite(char* a_name)
+	{
+		for (std::vector<Sprite*>::iterator it = objectList.begin(); it != objectList.end(); ++it)
+		{
+			if ((*it)->name == a_name)
+			{
+				return *it;
+			}
+		}
+		return nullptr;
+	}
 };
 
 

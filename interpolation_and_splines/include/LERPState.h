@@ -2,8 +2,11 @@
 #define _LERP_STATE_H	
 
 #include "BaseState.h"
-#include <vector>
+
 #include <iostream>
+
+typedef std::vector<Sprite*>::iterator it_objectList;
+
 
 class LERPState
 	: public BaseState
@@ -16,14 +19,6 @@ public:
 	void Draw();
 	void Update(float timeDelta, StateManager* stateMan);
 	void Destroy();
-
-private:
-	std::vector<Sprite*> objectList;
-	std::vector<Vector2*> curvePoints;
-	float currentLERPPercent = 0.0f;
-
 	void HandleUI(StateManager* stateMan);
-
-	bool clicked = false;
 };
 #endif
