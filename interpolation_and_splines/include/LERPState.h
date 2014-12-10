@@ -23,5 +23,7 @@ private:
 	float currentLERPPercent = 0.0f;
 
 	void HandleUI(StateManager* stateMan);
+
+	bool clicked = false;
 };
 #endif

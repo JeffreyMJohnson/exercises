@@ -15,6 +15,14 @@ struct Sprite
 	Vector2 position;
 	uInt ID = 0;
 	char* name = "";
+
+	bool IsCollided(const Vector2& pos)
+	{
+		Vector2 dX = position - pos;
+		dX.x = abs(dX.x);
+		dX.y = abs(dX.y);
+		return dX.x <= size.x;
+	}
 };
 
 struct Player

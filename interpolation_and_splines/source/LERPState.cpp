@@ -105,14 +105,32 @@ void LERPState::Destroy()
 void LERPState::HandleUI(StateManager* stateMan)
 {
 	if (IsKeyDown('M'))
-		stateMan->PopState();
-
-	if (GetMouseButtonDown(MOUSE_BUTTON_1))
 	{
-		std::cout << "click\n";
+		stateMan->PopState();
+		return;
 	}
-	if (GetMouseButtonReleased(MOUSE_BUTTON_1))
+
+
+	if (GetMouseButtonDown(MOUSE_BUTTON_1) && !clicked)
+	{
+		clicked = true;
+		std::cout << "clicked\n";
+		//loop through objects and see if clicked
+		for (Sprite* object : objectList)
+		{
+			if (object->ID == objectList[0]->ID)
+			{
+				double mousePosX = 0.0;
+				double mousePosY = 0.0;
+				GetMouseLocation(mousePosX, mousePosY);
+				bool isCollided = object->IsCollided(Vector2(mousePosX, mousePosY));
+				std::cout << "object: " << object->name << " clicked: " << isCollided << std::endl;
+			}
+		}
+	}
+	if (GetMouseButtonReleased(MOUSE_BUTTON_1) && clicked)
 	{
 		std::cout << "released\n";
+		clicked = false;
 	}
 }
