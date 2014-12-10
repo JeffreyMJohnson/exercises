@@ -45,7 +45,7 @@
     <OutDir>bin\</OutDir>
     <IntDir>obj\</IntDir>
     <TargetName>$(ProjectName)_d</TargetName>
-    <LibraryPath>$(ProjectDir)libs\</LibraryPath>
+    <LibraryPath>$(ProjectDir)libs\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(ProjectDir)include\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,7 +67,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <OutputFile>$(OutDir)$(ProjectName)_d.exe</OutputFile>
       <AdditionalLibraryDirectories>./libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>AIE_GL_Static_Framework_d.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>AIE_GL_Static_Framework_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ProgramDatabaseFile>$(OutDir)$(ProjectName)_d.pdb</ProgramDatabaseFile>
     </Link>
   </ItemDefinitionGroup>

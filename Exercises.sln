@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "interpolation_and_splines",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exception_handling", "exception_handling\exception_handling.vcxproj", "{4FA02AB5-19EE-4367-9331-E5B5B09484C3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "database", "database\database.vcxproj", "{1B0EC449-F87F-422E-93FE-FC3E3075189B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -123,6 +125,10 @@ Global
 		{4FA02AB5-19EE-4367-9331-E5B5B09484C3}.Debug|Win32.Build.0 = Debug|Win32
 		{4FA02AB5-19EE-4367-9331-E5B5B09484C3}.Release|Win32.ActiveCfg = Release|Win32
 		{4FA02AB5-19EE-4367-9331-E5B5B09484C3}.Release|Win32.Build.0 = Release|Win32
+		{1B0EC449-F87F-422E-93FE-FC3E3075189B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1B0EC449-F87F-422E-93FE-FC3E3075189B}.Debug|Win32.Build.0 = Debug|Win32
+		{1B0EC449-F87F-422E-93FE-FC3E3075189B}.Release|Win32.ActiveCfg = Release|Win32
+		{1B0EC449-F87F-422E-93FE-FC3E3075189B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
