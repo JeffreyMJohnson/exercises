@@ -10,10 +10,14 @@ typedef std::vector<Edge> EdgeList;
 class GraphNode
 {
 public:
-	GraphNode(int a_nodeNum);
+	GraphNode(int a_nodeNum)
+	{
+		m_NodeNumber = a_nodeNum;
+	}
 
 	int m_NodeNumber;
 	EdgeList mEdges;
+
 };
 
 #endif

@@ -1,12 +1,15 @@
 #include "GraphNode.h"
 
+#include <iostream>
+
 
 class Graph
 {
 	typedef std::vector<GraphNode*> NodeList;
 public:
+	NodeList mNodes;
 	//create empty graph
-	Graph();
+	Graph(){};
 
 	//create graph with given num of nodes
 	Graph(unsigned int a_nodeCount);
@@ -28,12 +31,20 @@ public:
 				if (eIt->mStart == a_node)
 				{
 					//remove edge
-					(*it)->mEdges.erase(eIt);
+					eIt = (*it)->mEdges.erase(eIt);
 				}
+				if (eIt->mEnd == a_node)
+				{
+					//remove edge
+					eIt = (*it)->mEdges.erase(eIt);
+				}
+			}
+			if (n = a_node)
+			{
+				it = mNodes.erase(it);
 			}
 		}
 	}
 
-private:
-	NodeList mNodes;
+
 };
