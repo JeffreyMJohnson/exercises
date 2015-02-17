@@ -12,7 +12,14 @@ public:
 	Graph(){};
 
 	//create graph with given num of nodes
-	Graph(unsigned int a_nodeCount);
+	Graph(unsigned int a_nodeCount)
+	{
+		for (int i = 0; i < a_nodeCount; i++)
+		{
+			GraphNode* n = new GraphNode(i);
+			mNodes.push_back(n);
+		}
+	}
 
 	void AddNode(GraphNode* a_node)
 	{
