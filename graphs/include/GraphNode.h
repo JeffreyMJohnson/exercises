@@ -7,16 +7,33 @@
 
 typedef std::vector<Edge> EdgeList;
 
+struct Position
+{
+	float x;
+	float y;
+	Position()
+	{
+		x = 0;
+		y = 0;
+	}
+	Position(float a_x, float a_y)
+	{
+		x = a_x;
+		y = a_y;
+	}
+};
+
 class GraphNode
 {
 public:
-	GraphNode(int a_nodeNum)
+	GraphNode(Position a_position)
 	{
-		m_NodeNumber = a_nodeNum;
 		mIsVisited = false;
+		mPosition = a_position;
 	}
 
 	int m_NodeNumber;
+	Position mPosition;
 	bool mIsVisited;
 	EdgeList mEdges;
 

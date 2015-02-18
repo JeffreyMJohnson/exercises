@@ -1,23 +1,27 @@
 #include "Graph.h"
+#include "glm/glm.hpp"
+
 #include <iostream>
 
 using namespace std;
 
-void PrintGraph();
+void PrintGraph(Graph* a_graph);
 void PrintNeighbors(GraphNode* a_Node);
 void PrintNode(GraphNode* a_node);
 bool IsNeighbor(GraphNode* node1, GraphNode* node2);
+Graph* GenerateGrid(int width, int height);
+GraphNode* ClosestNode(Graph* a_graph, glm::vec3 position);
 
 Graph myGraph;
 void main()
 {
 
-	GraphNode* node0 = new GraphNode(0);
-	GraphNode* node1 = new GraphNode(1);
-	GraphNode* node2 = new GraphNode(2);
-	GraphNode* node3 = new GraphNode(3);
-	GraphNode* node4 = new GraphNode(4);
-	GraphNode* node5 = new GraphNode(5);
+	GraphNode* node0 = new GraphNode(Position(0, 0));
+	GraphNode* node1 = new GraphNode(Position(1, 1));
+	GraphNode* node2 = new GraphNode(Position(2, 2));
+	GraphNode* node3 = new GraphNode(Position(3, 3));
+	GraphNode* node4 = new GraphNode(Position(4, 4));
+	GraphNode* node5 = new GraphNode(Position(5, 5));
 
 	Edge e0;
 	e0.mStart = node0;
@@ -66,23 +70,120 @@ void main()
 	node5->mEdges.push_back(e7);
 	myGraph.AddNode(node5);
 
-	PrintGraph();
+	Graph* grid = GenerateGrid(5, 5);
+	
+	glm::vec3 position(4,4, 0);
+	GraphNode* closest = ClosestNode(grid, position);
+	cout << "nearest node to position (4,4) - ";
+	PrintNode(closest);
 
-	cout << "node3 connected to node4: " << myGraph.SearchBFS(node5, node1)<<endl;
 
 	system("pause");
 }
 
-void PrintGraph()
+Graph* GenerateGrid(int width, int height)
+{
+	//generate grid of nodes
+	Graph* r = new Graph;
+
+	for (int row = 0; row < height; row++)
+	{
+		for (int col = 0; col < width; col++)
+		{
+			GraphNode* node = new GraphNode(Position(row, col));
+			GraphNode* north = new GraphNode(Position(row - 1, col));
+			GraphNode* south = new GraphNode(Position(row + 1, col));
+			GraphNode* east = new GraphNode(Position(row, col + 1));
+			GraphNode* west = new GraphNode(Position(row, col - 1));
+
+			if (row - 1 >= 0)
+			{
+				Edge e;
+				e.mStart = node;
+				e.mEnd = north;
+				node->mEdges.push_back(e);
+			}
+			else
+			{
+				delete north;
+			}
+
+			if (row + 1 < height)
+			{
+				Edge e;
+				e.mStart = node;
+				e.mEnd = south;
+				node->mEdges.push_back(e);
+			}
+			else
+			{
+				delete south;
+			}
+
+			if (col + 1 < width)
+			{
+				Edge e;
+				e.mStart = node;
+				e.mEnd = east;
+				node->mEdges.push_back(e);
+			}
+			else
+			{
+				delete east;
+			}
+
+			if (col - 1 >= 0)
+			{
+				Edge e;
+				e.mStart = node;
+				e.mEnd = west;
+				node->mEdges.push_back(e);
+			}
+			else
+			{
+				delete west;
+			}
+
+			r->AddNode(node);
+		}
+	}
+	return r;
+}
+
+GraphNode* ClosestNode(Graph* a_graph, glm::vec3 position)
+{
+	float shortestDx = -1;
+	GraphNode* result = nullptr;
+	for (auto node : a_graph->mNodes)
+	{
+		float dx = glm::distance(position, glm::vec3(node->mPosition.x, node->mPosition.y, 0));
+		if (shortestDx == -1)
+		{
+			shortestDx = dx;
+			result = node;
+		}
+		else if (dx < shortestDx)
+		{
+			shortestDx = dx;
+			result = node;
+		}
+
+	}
+	return result;
+
+
+}
+
+void PrintGraph(Graph* a_graph)
 {
 
-	for (auto node : myGraph.mNodes)
+	for (auto node : a_graph->mNodes)
 	{
-		cout << "node: " << node->m_NodeNumber << " - " << node << endl;
+		cout << "node: " << "(" << node->mPosition.x << ", " << node->mPosition.y << ")" << " - " << node << endl;
 		for (auto edge : node->mEdges)
 		{
-			cout << "\tedge: start -  " << edge.mStart << "(node " << edge.mStart->m_NodeNumber << ")";
-			cout << " end - " << edge.mEnd << "(node " << edge.mEnd->m_NodeNumber << ")";
+			cout << "\tedge: start -  " << edge.mStart << "(node " << "(" << edge.mStart->mPosition.x << ", " << edge.mStart->mPosition.y << ")";
+			cout << " end - " << edge.mEnd << "(node " << "(" << edge.mEnd->mPosition.x << ", " << edge.mEnd->mPosition.y << ")";
 			cout << endl;
 		}
 	}
@@ -105,11 +206,11 @@ bool IsNeighbor(GraphNode* node1, GraphNode* node2)
 
 void PrintNode(GraphNode* a_node)
 {
-	cout << "node: " << a_node->m_NodeNumber << " - " << a_node << endl;
+	cout << "node: " << "(" << a_node->mPosition.x << ", " << a_node->mPosition.y << ")" << " - " << a_node << endl;
 	for (auto edge : a_node->mEdges)
 	{
-		cout << "\tedge: start -  " << edge.mStart << "(node " << edge.mStart->m_NodeNumber << ")";
-		cout << " end - " << edge.mEnd << "(node " << edge.mEnd->m_NodeNumber << ")";
+		cout << "\tedge: start -  " << edge.mStart << "(node " << "(" << edge.mStart->mPosition.x << ", " << edge.mStart->mPosition.y << ")";
+		cout << " end - " << edge.mEnd << "(node " << "(" << edge.mEnd->mPosition.x << ", " << edge.mEnd->mPosition.y << ")";
 		cout << endl;
 	}
 }

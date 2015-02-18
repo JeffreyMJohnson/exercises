@@ -19,7 +19,7 @@ public:
 	{
 		for (int i = 0; i < a_nodeCount; i++)
 		{
-			GraphNode* n = new GraphNode(i);
+			GraphNode* n = new GraphNode(Position(i,i));
 			mNodes.push_back(n);
 		}
 	}
@@ -28,6 +28,7 @@ public:
 	{
 		mNodes.push_back(a_node);
 	}
+
 
 	void ResetVisited()
 	{
