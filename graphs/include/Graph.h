@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <algorithm>
 
 
 class Graph
@@ -74,18 +75,23 @@ public:
 		{
 			GraphNode* current = nodeQueue.front();
 			nodeQueue.pop();
+			if (current->mIsVisited)
+				continue;
+			if (current == a_end)
+			{
+				return true;
+			}
+			current->mIsVisited = true;
+
 			for (auto edge : current->mEdges)
 			{
-				if (current == a_end)
+				if (!edge.mEnd->mIsVisited)
 				{
-					return true;
-				}
-				if (edge.mEnd->mIsVisited)
-				{
-
+					nodeQueue.push(edge.mEnd);
 				}
 			}
 		}
+		return false;
 	}
 
 	void RemoveNode(GraphNode* a_node)

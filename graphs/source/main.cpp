@@ -68,7 +68,7 @@ void main()
 
 	PrintGraph();
 
-	cout << "node3 connected to node5: " << myGraph.SearchDFS(node3, node5)<<endl;
+	cout << "node3 connected to node4: " << myGraph.SearchBFS(node5, node1)<<endl;
 
 	system("pause");
 }
