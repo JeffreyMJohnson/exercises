@@ -68,8 +68,7 @@ void main()
 
 	PrintGraph();
 
-	cout << "node0 is neighbor with node5 - " << IsNeighbor(node0, node5) << endl;
-	cout << "node2 is neighbor with node5 - " << IsNeighbor(node2, node5) << endl;
+	cout << "node3 connected to node5: " << myGraph.SearchDFS(node3, node5)<<endl;
 
 	system("pause");
 }

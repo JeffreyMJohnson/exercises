@@ -13,9 +13,11 @@ public:
 	GraphNode(int a_nodeNum)
 	{
 		m_NodeNumber = a_nodeNum;
+		mIsVisited = false;
 	}
 
 	int m_NodeNumber;
+	bool mIsVisited;
 	EdgeList mEdges;
 
 };

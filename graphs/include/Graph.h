@@ -1,6 +1,8 @@
 #include "GraphNode.h"
 
 #include <iostream>
+#include <stack>
+#include <queue>
 
 
 class Graph
@@ -25,6 +27,67 @@ public:
 	{
 		mNodes.push_back(a_node);
 	}
+
+	void ResetVisited()
+	{
+		for (auto node : mNodes)
+		{
+			node->mIsVisited = false;
+		}
+	}
+
+	bool SearchDFS(GraphNode* a_start, GraphNode* a_end)
+	{
+		std::stack<GraphNode*> nodeStack;
+		nodeStack.push(a_start);
+
+		//keep looping until stack is empty
+		//this means all is checked.
+		while (!nodeStack.empty())
+		{
+			GraphNode* current = nodeStack.top();
+			nodeStack.pop();
+			if (current->mIsVisited)
+			{
+				continue;
+			}
+			current->mIsVisited = true;
+			if (current == a_end)
+			{
+				return true;
+			}
+			for (auto edge : current->mEdges)
+			{
+				nodeStack.push(edge.mEnd);
+			}
+		}
+
+		return false;
+	}
+
+	bool SearchBFS(GraphNode* a_start, GraphNode* a_end)
+	{
+		std::queue<GraphNode*> nodeQueue;
+		nodeQueue.push(a_start);
+
+		while (!nodeQueue.empty())
+		{
+			GraphNode* current = nodeQueue.front();
+			nodeQueue.pop();
+			for (auto edge : current->mEdges)
+			{
+				if (current == a_end)
+				{
+					return true;
+				}
+				if (edge.mEnd->mIsVisited)
+				{
+
+				}
+			}
+		}
+	}
+
 	void RemoveNode(GraphNode* a_node)
 	{
 		//loop through vector
