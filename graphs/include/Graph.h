@@ -4,6 +4,7 @@
 #include <stack>
 #include <queue>
 #include <list>
+#include <limits>
 
 #include <algorithm>
 
@@ -25,7 +26,7 @@ public:
 	{
 		for (int i = 0; i < a_nodeCount; i++)
 		{
-			GraphNode* n = new GraphNode(Position(i,i));
+			GraphNode* n = new GraphNode(Position(i, i));
 			mNodes.push_back(n);
 		}
 	}
@@ -46,19 +47,71 @@ public:
 		}
 	}
 
-	void SearchDijk(GraphNode* start, GraphNode* end)
+	std::list<GraphNode*> ProcessGraphForDijkstra(GraphNode* start, GraphNode* end)
 	{
-		std::list<GraphNode*> nodes;
+		std::list<GraphNode*> priorityQ;
+		ResetNodelist();
+		priorityQ.push_front(start);
+		start->mGScore = 0;
+		start->mParent = start;
 
-		nodes.sort(NodeCompare);
+		while (!priorityQ.empty())
+		{
+			//sort so first node always lowest g score
+			priorityQ.sort(NodeCompare);
+			GraphNode* current = priorityQ.front();
+			priorityQ.pop_front();
+
+			current->mIsVisited = true;
+
+			for (auto edge : current->mEdges)
+			{
+				if (!edge.mEnd->mIsVisited)
+				{
+					int cost = current->mGScore + edge.mCost;
+					if (cost < edge.mEnd->mGScore)
+					{
+						edge.mEnd->mParent = current;
+						edge.mEnd->mGScore = cost;
+						std::find(priorityQ.begin(), priorityQ.end(), edge.mEnd);
+						if ((std::find(priorityQ.begin(), priorityQ.end(), edge.mEnd)) == priorityQ.end())
+						{
+							priorityQ.push_back(edge.mEnd);
+						}
+					}
+				}
+			}
+		}
+		std::list<GraphNode*> result;
+		result.push_front(end);
+		GraphNode* parent = end->mParent;
+		while (parent != start)
+		{
+			result.push_front(parent);
+			parent = parent->mParent;
+		}
+		result.push_front(parent);
+		return result;
+
 	}
 
-	void ResetParents()
+	bool IsInList(std::list<GraphNode*>& list, GraphNode* node)
+	{
+		for (std::list<GraphNode*>::iterator it = list.begin(); it != list.end(); ++it)
+		{
+			if (*it = node)
+				return true;
+		}
+		return false;
+	}
+
+	void ResetNodelist()
 	{
 		for (auto node : mNodes)
 		{
 			node->mParent = nullptr;
-			node->mGScore = -1;
+			node->mGScore = INT_MAX;
+			node->mIsVisited = false;
 		}
 	}
 

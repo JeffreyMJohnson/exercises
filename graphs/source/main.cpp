@@ -26,58 +26,63 @@ void main()
 	Edge e0;
 	e0.mStart = node0;
 	e0.mEnd = node1;
+	e0.mCost = 2;
 	node0->mEdges.push_back(e0);
 
 	Edge e1;
 	e1.mStart = node0;
 	e1.mEnd = node5;
+	e1.mCost = 5;
 	node0->mEdges.push_back(e1);
 	myGraph.AddNode(node0);
 
 	Edge e2;
 	e2.mStart = node1;
 	e2.mEnd = node2;
+	e2.mCost = 3;
 	node1->mEdges.push_back(e2);
 	myGraph.AddNode(node1);
 
 	Edge e3;
 	e3.mStart = node2;
 	e3.mEnd = node0;
+	e3.mCost = 3;
 	node2->mEdges.push_back(e3);
 
 	Edge e4;
 	e4.mStart = node2;
 	e4.mEnd = node3;
+	e4.mCost = 1;
 	node2->mEdges.push_back(e4);
 	myGraph.AddNode(node2);
 
 	Edge e5;
 	e5.mStart = node3;
 	e5.mEnd = node4;
+	e5.mCost = 4;
 	node3->mEdges.push_back(e5);
+
+	Edge e8;
+	e8.mStart = node3;
+	e8.mEnd = node5;
+	e8.mCost = 4;
+	node3->mEdges.push_back(e8);
 	myGraph.AddNode(node3);
 
 	myGraph.AddNode(node4);
 
-	Edge e6;
-	e6.mStart = node5;
-	e6.mEnd = node3;
-	node5->mEdges.push_back(e6);
-
 	Edge e7;
 	e7.mStart = node5;
 	e7.mEnd = node4;
+	e7.mCost = 4;
 	node5->mEdges.push_back(e7);
 	myGraph.AddNode(node5);
 
-	Graph* grid = GenerateGrid(5, 5);
-	
-	glm::vec3 position(4,4, 0);
-	GraphNode* closest = ClosestNode(grid, position);
-	cout << "nearest node to position (4,4) - ";
-	PrintNode(closest);
-
-	myGraph.SearchDijk(nullptr, nullptr);
+	std::list<GraphNode*> shortestPath = myGraph.ProcessGraphForDijkstra(node0, node4);
+	for (auto node : shortestPath)
+	{
+		PrintNode(node);
+	}
 
 	system("pause");
 }
