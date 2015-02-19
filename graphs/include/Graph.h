@@ -3,8 +3,14 @@
 #include <iostream>
 #include <stack>
 #include <queue>
+#include <list>
+
 #include <algorithm>
 
+bool NodeCompare(const GraphNode* lhs, const GraphNode* rhs)
+{
+	return (lhs->mGScore < rhs->mGScore);
+}
 
 class Graph
 {
@@ -24,6 +30,8 @@ public:
 		}
 	}
 
+
+
 	void AddNode(GraphNode* a_node)
 	{
 		mNodes.push_back(a_node);
@@ -35,6 +43,22 @@ public:
 		for (auto node : mNodes)
 		{
 			node->mIsVisited = false;
+		}
+	}
+
+	void SearchDijk(GraphNode* start, GraphNode* end)
+	{
+		std::list<GraphNode*> nodes;
+
+		nodes.sort(NodeCompare);
+	}
+
+	void ResetParents()
+	{
+		for (auto node : mNodes)
+		{
+			node->mParent = nullptr;
+			node->mGScore = -1;
 		}
 	}
 

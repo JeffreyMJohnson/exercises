@@ -32,7 +32,8 @@ public:
 		mPosition = a_position;
 	}
 
-	int m_NodeNumber;
+	GraphNode* mParent;
+	int mGScore;
 	Position mPosition;
 	bool mIsVisited;
 	EdgeList mEdges;

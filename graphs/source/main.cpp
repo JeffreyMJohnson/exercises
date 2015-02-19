@@ -77,6 +77,7 @@ void main()
 	cout << "nearest node to position (4,4) - ";
 	PrintNode(closest);
 
+	myGraph.SearchDijk(nullptr, nullptr);
 
 	system("pause");
 }
