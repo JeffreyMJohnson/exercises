@@ -21,6 +21,10 @@ struct Position
 		x = a_x;
 		y = a_y;
 	}
+	static float Magnitude(const Position& pos1, const Position& pos2)
+	{
+		return sqrtf(((pos2.x - pos1.x) * (pos2.x - pos1.x)) + ((pos2.y - pos1.y) * (pos2.y - pos1.y)));
+	}
 };
 
 class GraphNode
@@ -34,6 +38,7 @@ public:
 
 	GraphNode* mParent;
 	int mGScore;
+	float mFscore = 0;
 	Position mPosition;
 	bool mIsVisited;
 	EdgeList mEdges;

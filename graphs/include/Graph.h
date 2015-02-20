@@ -8,10 +8,9 @@
 
 #include <algorithm>
 
-bool NodeCompare(const GraphNode* lhs, const GraphNode* rhs)
-{
-	return (lhs->mGScore < rhs->mGScore);
-}
+
+
+
 
 class Graph
 {
@@ -31,7 +30,10 @@ public:
 		}
 	}
 
-
+	float GetHeuristic(GraphNode* node, GraphNode* targetNode)
+	{
+		return Position::Magnitude(node->mPosition, targetNode->mPosition);
+	}
 
 	void AddNode(GraphNode* a_node)
 	{
@@ -47,6 +49,67 @@ public:
 		}
 	}
 
+	static bool NodeCompareFScore(const GraphNode* lhs, const GraphNode* rhs)
+	{
+		return lhs->mFscore < rhs->mFscore;
+	}
+
+	std::list<GraphNode*> ProcessGraphForAStar(GraphNode* start, GraphNode* end)
+	{
+		std::list<GraphNode*> priorityQ;
+		ResetNodelist();
+		priorityQ.push_front(start);
+		start->mGScore = 0;
+		start->mParent = start;
+
+		while (!priorityQ.empty())
+		{
+			//sort so first node always lowest F score
+			priorityQ.sort(NodeCompareFScore);
+			GraphNode* current = priorityQ.front();
+			priorityQ.pop_front();
+
+			current->mIsVisited = true;
+
+			if (current == end)
+				break;
+
+			for (auto edge : current->mEdges)
+			{
+				if (!edge.mEnd->mIsVisited)
+				{
+					int fScore = current->mGScore + edge.mCost + GetHeuristic(edge.mEnd, end);
+					if (fScore < edge.mEnd->mGScore)
+					{
+						edge.mEnd->mParent = current;
+						edge.mEnd->mGScore = current->mGScore + edge.mCost;
+						edge.mEnd->mFscore = fScore;
+						std::find(priorityQ.begin(), priorityQ.end(), edge.mEnd);
+						if ((std::find(priorityQ.begin(), priorityQ.end(), edge.mEnd)) == priorityQ.end())
+						{
+							priorityQ.push_back(edge.mEnd);
+						}
+					}
+				}
+			}
+		}
+		std::list<GraphNode*> result;
+		result.push_front(end);
+		GraphNode* parent = end->mParent;
+		while (parent != start)
+		{
+			result.push_front(parent);
+			parent = parent->mParent;
+		}
+		result.push_front(parent);
+		return result;
+	}
+
+	static bool NodeCompare(const GraphNode* lhs, const GraphNode* rhs)
+	{
+		return (lhs->mGScore < rhs->mGScore);
+	}
+
 	std::list<GraphNode*> ProcessGraphForDijkstra(GraphNode* start, GraphNode* end)
 	{
 		std::list<GraphNode*> priorityQ;
@@ -58,7 +121,7 @@ public:
 		while (!priorityQ.empty())
 		{
 			//sort so first node always lowest g score
-			priorityQ.sort(NodeCompare);
+			priorityQ.sort(&Graph::NodeCompare);
 			GraphNode* current = priorityQ.front();
 			priorityQ.pop_front();
 

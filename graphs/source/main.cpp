@@ -74,11 +74,12 @@ void main()
 	Edge e7;
 	e7.mStart = node5;
 	e7.mEnd = node4;
-	e7.mCost = 4;
+	e7.mCost = 6;
 	node5->mEdges.push_back(e7);
 	myGraph.AddNode(node5);
 
-	std::list<GraphNode*> shortestPath = myGraph.ProcessGraphForDijkstra(node0, node4);
+//	std::list<GraphNode*> shortestPath = myGraph.ProcessGraphForDijkstra(node0, node4);
+	std::list<GraphNode*> shortestPath = myGraph.ProcessGraphForAStar(node0, node3);
 	for (auto node : shortestPath)
 	{
 		PrintNode(node);
